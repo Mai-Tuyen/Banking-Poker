@@ -1,4 +1,5 @@
 ﻿using BankingPoker_BackEnd.Entity;
+using BankingPoker_BackEnd.Model;
 using BankingPoker_BackEnd.Service.IRepository;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,18 @@ namespace BankingPoker_BackEnd.Service.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Player> GetListPlayer()
+        public IQueryable<PlayerViewModel> GetListPlayer()
         {
-            return context.Player.ToList();
+            var playerViewModels = from a in context.Player
+                                   join b in context.Sumary
+                                   on a.Id equals b.PlayerId
+                                   select new PlayerViewModel()
+                                   {
+                                       Id = a.Id,
+                                       Name = a.Name,
+                                       SumAdd = b.SumAdd
+                                   };
+            return playerViewModels;
         }
 
         public Player GetPlayerById(Guid playerId)

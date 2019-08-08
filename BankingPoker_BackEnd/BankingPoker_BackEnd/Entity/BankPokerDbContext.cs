@@ -8,9 +8,9 @@ namespace BankingPoker_BackEnd.Entity
 {
     public class BankPokerDbContext : DbContext
     {
-        //public BankPokerDbContext(DbContextOptions<BankPokerDbContext> options) : base(options)
-        //{
-        //}
+        public BankPokerDbContext(DbContextOptions<BankPokerDbContext> options) : base(options)
+        {
+        }
 
         public DbSet<Player> Player { get; set; }
         public DbSet<BuyInDetail> BuyInDetail { get; set; }

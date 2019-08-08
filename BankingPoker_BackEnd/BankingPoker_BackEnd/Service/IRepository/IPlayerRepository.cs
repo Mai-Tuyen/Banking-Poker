@@ -1,4 +1,5 @@
 ﻿using BankingPoker_BackEnd.Entity;
+using BankingPoker_BackEnd.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace BankingPoker_BackEnd.Service.IRepository
 {
     public interface IPlayerRepository
     {
-        IEnumerable<Player> GetListPlayer();
+        IQueryable<PlayerViewModel> GetListPlayer();
         void CreatePlayer(Player newPlayer);
         Player GetPlayerById(Guid playerId);
         void DeletePlayer(Guid playerId);
