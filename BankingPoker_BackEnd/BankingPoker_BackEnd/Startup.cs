@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BankingPoker_BackEnd.Entity;
+using BankingPoker_BackEnd.Model;
 using BankingPoker_BackEnd.Service.IRepository;
 using BankingPoker_BackEnd.Service.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,7 @@ namespace BankingPoker_BackEnd
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<BankPokerDbContext>(options => 
+            services.AddDbContext<BankPokerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BankPokerDb")));
 
             //register the Repository
@@ -51,6 +52,13 @@ namespace BankingPoker_BackEnd
             {
                 app.UseHsts();
             }
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Player, PlayerDTO>();
+                cfg.CreateMap<BuyInDetail, BuyInDetailDTO>();
+                cfg.CreateMap<Sumary, SumaryDTO>();
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();

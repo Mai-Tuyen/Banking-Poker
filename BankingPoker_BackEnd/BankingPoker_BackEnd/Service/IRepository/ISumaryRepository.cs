@@ -9,6 +9,8 @@ namespace BankingPoker_BackEnd.Service.IRepository
     public interface ISumaryRepository
     {
         void CreateSumary(Sumary newSumary);
+
+        void UpdateSumary(int numberAdd,Guid playerId);
         IEnumerable<Sumary> GetListSumaryByDate(DateTime date);
         bool Save();
     }

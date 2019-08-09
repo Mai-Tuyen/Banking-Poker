@@ -28,5 +28,11 @@ namespace BankingPoker_BackEnd.Service.Repository
         {
             return context.Sumary.Where(x => x.Date == date).ToList();
         }
+
+        public void UpdateSumary(int numberAdd,Guid playerId)
+        {
+            var sumary = context.Sumary.Where(x => x.PlayerId == playerId).FirstOrDefault();
+            sumary.SumAdd += numberAdd;
+        }
     }
 }

@@ -9,10 +9,11 @@ namespace BankingPoker_BackEnd.Service.IRepository
 {
     public interface IPlayerRepository
     {
-        IQueryable<PlayerViewModel> GetListPlayer();
+        IQueryable<PlayerDTO> GetListPlayer();
         void CreatePlayer(Player newPlayer);
         Player GetPlayerById(Guid playerId);
         void DeletePlayer(Guid playerId);
+        bool CheckExistPlayerName(string playerName);
         bool Save();
     }
 }

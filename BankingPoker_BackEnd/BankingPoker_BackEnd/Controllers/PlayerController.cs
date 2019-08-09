@@ -43,6 +43,12 @@ namespace BankingPoker_BackEnd.Controllers
             {
                 return BadRequest();
             }
+
+            if (playerRepository.CheckExistPlayerName(newPlayer.Name))
+            {
+                return BadRequest();
+            }
+
             playerRepository.CreatePlayer(newPlayer);
             if (!playerRepository.Save())
             {
@@ -67,7 +73,7 @@ namespace BankingPoker_BackEnd.Controllers
             }
 
 
-            return Ok(new PlayerViewModel() { Id = newPlayer.Id, Name = newPlayer.Name, SumAdd = 0 });
+            return Ok(new PlayerDTO() { Id = newPlayer.Id, Name = newPlayer.Name, SumAdd = 0 });
         }
 
         // PUT: api/Player/5
