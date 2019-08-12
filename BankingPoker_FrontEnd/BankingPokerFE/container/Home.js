@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Button
+} from "react-native";
 import { Table, TableWrapper, Row, Cell } from "react-native-table-component";
 
 class Home extends Component {
@@ -8,26 +15,29 @@ class Home extends Component {
     this.state = {
       tableHead: ["ID", "Player Name", "Buy in", "Detail"],
       tableData: [
-        [1, "Tuyen", 1,"Detail"],
-        [2, "Tuyen1", 2,"Detail"],
-        [3, "Tuyen2", 4,"Detail"],
-        [4, "Tuyen3", 0,"Detail"]
+        [1, "Tuyen", 1, "Detail"],
+        [2, "Tuyen1", 2, "Detail"],
+        [3, "Tuyen2", 4, "Detail"],
+        [4, "Tuyen3", 0, "Detail"]
       ]
     };
   }
 
-  _alertIndex(index) {
-    Alert.alert(`This is row ${index + 1}`);
-  }
-
   render() {
     const state = this.state;
-    const elementDetail = (data, index) => (
-      <TouchableOpacity onPress={() => this._alertIndex(index)}>
+    const elementDetail = data => (
+      <TouchableOpacity>
         <View style={styles.btn}>
           <Text style={styles.btnText}>Detail</Text>
         </View>
       </TouchableOpacity>
+    );
+    const elementSumAdd = data => (
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <Button title="-" color="red" style={styles.widthBtnAdd} />
+        <Text style={{ marginLeft: 5, marginRight: 5 }}>{data}</Text>
+        <Button title="+" color="blue" style={styles.widthBtnAdd} />
+      </View>
     );
 
     return (
@@ -43,7 +53,14 @@ class Home extends Component {
               {rowData.map((cellData, cellIndex) => (
                 <Cell
                   key={cellIndex}
-                  data={cellIndex === 3 ? elementDetail(cellData, index) : cellData}
+                  data={
+                    cellIndex === 3
+                      ? elementDetail(cellData)
+                      : cellIndex === 2
+                      ? elementSumAdd(cellData)
+                      : cellData
+                  }
+                  //   data={this.getCellData(cellIndex,cellData)}
                   textStyle={styles.text}
                 />
               ))}
@@ -60,6 +77,7 @@ const styles = StyleSheet.create({
   text: { margin: 6 },
   row: { flexDirection: "row", backgroundColor: "#FFF1C1" },
   btn: { width: 58, height: 18, backgroundColor: "#78B7BB", borderRadius: 2 },
-  btnText: { textAlign: "center", color: "#fff" }
+  btnText: { textAlign: "center", color: "#fff" },
+  widthBtnAdd: { width: 20,height:20}
 });
 export default Home;
