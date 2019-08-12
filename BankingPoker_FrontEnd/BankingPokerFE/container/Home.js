@@ -33,10 +33,18 @@ class Home extends Component {
       </TouchableOpacity>
     );
     const elementSumAdd = data => (
-      <View style={{ flex: 1, flexDirection: "row" }}>
-        <Button title="-" color="red" style={styles.widthBtnAdd} />
+      <View style={{ flex: 1, flexDirection: "row",justifyContent:"center" }}>
+        <TouchableOpacity>
+        <View style={styles.widthBtnSub}>
+          <Text style={styles.btnText}>-</Text>
+        </View>
+      </TouchableOpacity>
         <Text style={{ marginLeft: 5, marginRight: 5 }}>{data}</Text>
-        <Button title="+" color="blue" style={styles.widthBtnAdd} />
+        <TouchableOpacity>
+        <View style={styles.widthBtnAdd}>
+          <Text style={styles.btnText}>+</Text>
+        </View>
+      </TouchableOpacity>
       </View>
     );
 
@@ -78,6 +86,8 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", backgroundColor: "#FFF1C1" },
   btn: { width: 58, height: 18, backgroundColor: "#78B7BB", borderRadius: 2 },
   btnText: { textAlign: "center", color: "#fff" },
-  widthBtnAdd: { width: 20,height:20}
+  widthBtnAdd: { width: 20,height:20, backgroundColor:"green", borderRadius: 2},
+  widthBtnSub: { width: 20,height:20, backgroundColor:"red", borderRadius: 2},
+
 });
 export default Home;
