@@ -33,7 +33,7 @@ class Home extends Component {
       </TouchableOpacity>
     );
     const elementSumAdd = data => (
-      <View style={{ flex: 1, flexDirection: "row",justifyContent:"center" }}>
+      <View style={{ flex: 1, flexDirection: "row",alignItems:"center" }}>
         <TouchableOpacity>
         <View style={styles.widthBtnSub}>
           <Text style={styles.btnText}>-</Text>
@@ -88,6 +88,6 @@ const styles = StyleSheet.create({
   btnText: { textAlign: "center", color: "#fff" },
   widthBtnAdd: { width: 20,height:20, backgroundColor:"green", borderRadius: 2},
   widthBtnSub: { width: 20,height:20, backgroundColor:"red", borderRadius: 2},
-
+  tableRow: {marginBottom:20},
 });
 export default Home;
